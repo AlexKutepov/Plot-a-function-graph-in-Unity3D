@@ -17,3 +17,5 @@ look like:
 If you want the  function graph is non-linear, you will must add many  points next to each other.
 
 You can create your own a method for add points, so it will be more convenient.
+
+You can resize the graph however you want, just do a rect transform before how you  start the project.
