@@ -1,4 +1,4 @@
-## graph creator for Unity3D
+## Plot a function graph in Unity3D
 Target language is Russian, posible soon to be translate into English. 
 This system uses lablary UnityEngine.UI.Extensions, so you need to use a version of Unity3D  that can use this lablary.
 
