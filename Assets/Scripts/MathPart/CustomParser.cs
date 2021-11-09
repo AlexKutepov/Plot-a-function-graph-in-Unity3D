@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ParserHelp {
+public static class CustomParser {
     public static double ParseToDouble(string value)  {
         double result = Double.NaN;
         value = value.Trim();
