@@ -66,7 +66,8 @@ public class GraphCreator : MonoBehaviour {
     }
 
     protected void AddTextForX() {
-        if (sizeStepX >= 0) {
+        if (sizeStepX == 0) return;
+        if (sizeStepX > 0) {
             step = sizeStepX / Xsteps;
             for (float i = StartCoordinateX; i <= sizeStepX; i += step) {
                 addTestForX(i);
@@ -81,7 +82,8 @@ public class GraphCreator : MonoBehaviour {
     }
 
     protected void AddTextForY() {
-        if (sizeStepY >= 0) {
+        if (sizeStepY == 0) return;
+        if (sizeStepY > 0) {
             step = sizeStepY / Ysteps;
             for (float i = StartCoordinateY; i <= sizeStepY; i += step) {
                 addTestForY(i);
