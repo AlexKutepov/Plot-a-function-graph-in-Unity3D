@@ -6,43 +6,43 @@ using System;
 
 public class GraphCreator : MonoBehaviour {
 
-    [Header("Точки для вставки в график")]
-    [SerializeField] GameObject PointFor;
+    [Header("Точки для вставки в график / Points to insert into the graph")]
+    [SerializeField] GameObject PointToInsert;
     [SerializeField] Transform PointForUTransform;
     protected Transform PointForUTransformTmp;
 
-    [Header("UILineRenderer для создания графикa")]
+    [Header("UILineRenderer для создания графикa / UILineRenderer to create a graph")]
     [SerializeField] UILineRenderer LineRenderForCreateGraph;
 
-    [Header("Список вставленных точек в график")]
+    [Header("Список вставленных точек в график / List of inserted points in the graph")]
     public List<GameObject> InstancePoints;
 
-    [Header("Сам график, где рисовать")]
-    [SerializeField] GameObject Grafik;
+    [Header("Сам график, где рисовать / The graph where to draw")]
+    [SerializeField] GameObject Graph;
 
-    [Header("Объект, хранящий значения на осях")]
+    [Header("Объект, хранящий значения на осях / values ​​on axes")]
     [SerializeField]
     Transform axisTextHolder;
 
-    [Header("Длина осей в графике по сторонам Х и У")]
+    [Header("Длина осей в графике по сторонам Х и У / The length of the axes in the graph on the sides X and Y")]
     [SerializeField] float sizeStepX = 50;
     [SerializeField] float sizeStepY = 50;
 
-    [Header("Количество шагов по оси Х")]
+    [Header("Количество шагов по оси Х / Number of steps along the axis X")]
     [SerializeField]
     int Xsteps;
-    [Header("Количество шагов по оси Y")]
+    [Header("Количество шагов по оси Y/ Number of steps along the axis Y")]
     [SerializeField]
     int Ysteps;
 
     public List<Vector2> dataPoints = new List<Vector2>();
     RectTransform mainTransform;
 
-    [Header("стартовая координата по оси Х")]
+    [Header("стартовая координата по оси Х / X-axis origin")]
     [SerializeField]
     float StartCoordinateX = 0;
 
-    [Header("стартовая координата по оси У")]
+    [Header("стартовая координата по оси У / Y-axis origin")]
     [SerializeField]
     float StartCoordinateY = 0;
     protected float step = 0;
@@ -138,23 +138,22 @@ public class GraphCreator : MonoBehaviour {
         if (ValidateAddingPoint()) { 
             if (lastPoint == new Vector2(valueX, valueY)) return;
             dataPoints.Insert(0, new Vector2(valueX, valueY));
-            InstancePoints.Insert(0, Instantiate(PointFor, PointForUTransform.position,
+            InstancePoints.Insert(0, Instantiate(PointToInsert, PointForUTransform.position,
             PointForUTransform.rotation));
             InstancePoints[0].SetActive(true);
-            InstancePoints[0].transform.SetParent(PointFor.transform.parent);
+            InstancePoints[0].transform.SetParent(PointToInsert.transform.parent);
             InstancePoints[0].transform.localScale = Vector3.one;
             InstancePoints[0].GetComponent<RectTransform>().anchoredPosition =
             new Vector3(InstancePoints[0].GetComponent<RectTransform>().anchoredPosition.x
                 + valueX *
-                 Grafik.GetComponent<RectTransform>().sizeDelta.x / sizeStepX,
+                 Graph.GetComponent<RectTransform>().sizeDelta.x / sizeStepX,
                 InstancePoints[0].GetComponent<RectTransform>().anchoredPosition.y
                 + valueY *
-                Grafik.GetComponent<RectTransform>().sizeDelta.y / sizeStepY, 0);
+                Graph.GetComponent<RectTransform>().sizeDelta.y / sizeStepY, 0);
             LineRenderForCreateGraph.Points = new Vector2[InstancePoints.Count];
             for (int i = 0; i < InstancePoints.Count; i++) {
                 LineRenderForCreateGraph.Points[i] =  new Vector2(InstancePoints[i].GetComponent<RectTransform>().anchoredPosition.x,
                 InstancePoints[i].GetComponent<RectTransform>().anchoredPosition.y);
-               
             }
             lastPoint = new Vector2(valueX, valueY);
         }
