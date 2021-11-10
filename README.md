@@ -1,5 +1,10 @@
 ## Plot a function graph in Unity3D
-Target language is Russian, posible soon to be translate into English. 
+
+The target language was Russian, but
+ver 0.3 has been translated into English 
+
+and has been added TextMeshPro.
+
 This system uses lablary UnityEngine.UI.Extensions, so you need to use a version of Unity3D  that can use this lablary.
 
 Basic cofiguration for the grahp:
