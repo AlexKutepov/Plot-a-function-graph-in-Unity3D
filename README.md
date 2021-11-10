@@ -9,15 +9,15 @@ This system uses lablary UnityEngine.UI.Extensions, so you need to use a version
 
 Basic cofiguration for the grahp:
 
-![](https://sun9-35.userapi.com/impg/hAjfH2JW-hUh0cPwUbPHUuYcPFFKkK8uu7DVZA/jnIgG_kaFiY.jpg?size=412x535&quality=95&sign=970b2f17e8c25ac23b3adcf0571298ba&type=album)
+![](https://sun9-55.userapi.com/impg/td9vN1VD4jDjY-8EbzaCYB5t0tZfFVv3XDRGAA/lYhw79iresg.jpg?size=574x524&quality=95&sign=aaba69a57d447ca1ac1c9461292cf249&type=album)
 
 look like this:
 
-![](https://sun9-75.userapi.com/impg/LrS_E9lnL_tN1kckREv2XcorOo-y62IsqcOJfw/mg9H7_4KvT4.jpg?size=415x548&quality=95&sign=c659790ca54654fc5737b654ae60322b&type=album)
+![](https://sun9-21.userapi.com/impg/MC3H-ck0iU0yMFvP7UYqU_Us5iPPct5JieM3PA/yz2sFiXfcfQ.jpg?size=542x607&quality=95&sign=2cecabd7b360bb57aab2290cd3b2972a&type=album)
 
 Graph can be negative if you set for the "Size Step x or y" to a negative value,
 look like:
-![](https://sun9-70.userapi.com/impg/Xti11FAmj8LKY3m8H_xGhT6c-vAkDXWa81iREA/b_kBE_0Vppw.jpg?size=420x621&quality=95&sign=621d0ea116d027a8f990c4416e0061c0&type=album)
+![](https://sun9-21.userapi.com/impg/Gq3ukiATLHq9FUlQKiFi_AjsxDobAoGQzNVPHg/IjG_m2Qci7o.jpg?size=486x583&quality=95&sign=919f4883d163c5a5e011e5dee4104461&type=album)
 
 If you want the  function graph is non-linear, you will must add many  points next to each other.
 
