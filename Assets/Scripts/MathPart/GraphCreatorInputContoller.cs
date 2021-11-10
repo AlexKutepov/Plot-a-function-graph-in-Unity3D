@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GraphCreatorInputContoller : MonoBehaviour {
-    // Start is called before the first frame update
+
     public GraphCreator graph;
 
     public InputField inputX;

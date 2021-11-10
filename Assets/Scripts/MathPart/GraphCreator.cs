@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 using System;
+using TMPro;
 
 public class GraphCreator : MonoBehaviour {
 
@@ -100,8 +101,8 @@ public class GraphCreator : MonoBehaviour {
     protected void addTestForX(float i, bool negative = false) {
         GameObject newText = Instantiate(axisTextHolder.GetChild(0).gameObject, axisTextHolder);
         newText.GetComponent<RectTransform>().anchoredPosition = new Vector2((i * mainTransform.sizeDelta.x) / sizeStepX, 0f);
-        if (!negative) newText.GetComponent<Text>().text = Math.Round(i, 1).ToString();
-        else newText.GetComponent<Text>().text = Math.Round(sizeStepX - i, 1).ToString();
+        if (!negative) newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString();
+        else newText.GetComponent<TextMeshProUGUI>().text = Math.Round(sizeStepX - i, 1).ToString();
         newText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(1, mainTransform.sizeDelta.y);
         if (i == 0f) newText.transform.GetChild(0).gameObject.SetActive(false);
     }
@@ -110,8 +111,8 @@ public class GraphCreator : MonoBehaviour {
         GameObject newText = Instantiate(axisTextHolder.GetChild(1).gameObject, axisTextHolder);
         newText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, (i * mainTransform.sizeDelta.y) / sizeStepY);
         if (i > 0f)
-            if (!negative) newText.GetComponent<Text>().text = Math.Round(i, 1).ToString() + "  ";
-            else newText.GetComponent<Text>().text = Math.Round(sizeStepY - 1, 1).ToString() + "  ";
+            if (!negative) newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString() + "  ";
+            else newText.GetComponent<TextMeshProUGUI>().text = Math.Round(sizeStepY - 1, 1).ToString() + "  ";
         newText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(mainTransform.sizeDelta.x, 1);
         if (i == 0f) newText.transform.GetChild(0).gameObject.SetActive(false);
     }

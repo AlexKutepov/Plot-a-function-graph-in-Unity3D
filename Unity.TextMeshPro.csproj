@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_19;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_19;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTMESHPRO_PRESENT;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -62,66 +62,66 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\FastAction.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\ITextPreProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\MaterialReferenceManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Asset.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Character.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_CharacterInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_ColorGradient.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Compatibility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_CoroutineTween.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_DefaultControls.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Dropdown.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_EditorResourceManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_FontAsset.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_FontAssetCommon.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_FontAssetUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_FontFeatureTable.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_FontFeaturesCommon.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_InputField.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_InputValidator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_LineInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_ListPool.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_MaterialManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_MeshInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_ObjectPool.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_PackageResourceImporter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_ResourcesManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_RichTextTagsCommon.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_ScrollbarEventHandler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SelectionCaret.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Settings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_ShaderUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Sprite.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SpriteAnimator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SpriteAsset.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SpriteAssetImportFormats.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SpriteCharacter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SpriteGlyph.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Style.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_StyleSheet.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SubMesh.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_SubMeshUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_Text.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_TextElement.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_TextElement_Legacy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_TextInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_TextParsingUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_TextProcessingStack.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_TextUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_UpdateManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMP_UpdateRegistery.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMPro_EventManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMPro_ExtensionMethods.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMPro_MeshUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMPro_Private.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TMPro_UGUI_Private.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TextContainer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TextMeshPro.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\TextMeshProUGUI.cs" />
-    <None Include="Library\PackageCache\com.unity.textmeshpro@2.1.1\Scripts\Runtime\Unity.TextMeshPro.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\FastAction.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\ITextPreProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\MaterialReferenceManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Asset.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Character.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_CharacterInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_ColorGradient.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Compatibility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_CoroutineTween.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_DefaultControls.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Dropdown.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_EditorResourceManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_FontAsset.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_FontAssetCommon.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_FontAssetUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_FontFeatureTable.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_FontFeaturesCommon.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_InputField.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_InputValidator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_LineInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_ListPool.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_MaterialManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_MeshInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_ObjectPool.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_PackageResourceImporter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_ResourcesManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_RichTextTagsCommon.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_ScrollbarEventHandler.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SelectionCaret.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Settings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_ShaderUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Sprite.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SpriteAnimator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SpriteAsset.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SpriteAssetImportFormats.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SpriteCharacter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SpriteGlyph.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Style.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_StyleSheet.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SubMesh.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_SubMeshUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_Text.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_TextElement.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_TextElement_Legacy.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_TextInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_TextParsingUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_TextProcessingStack.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_TextUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_UpdateManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMP_UpdateRegistery.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMPro_EventManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMPro_ExtensionMethods.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMPro_MeshUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMPro_Private.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TMPro_UGUI_Private.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TextContainer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TextMeshPro.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\TextMeshProUGUI.cs" />
+    <None Include="Library\PackageCache\com.unity.textmeshpro@2.1.6\Scripts\Runtime\Unity.TextMeshPro.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
