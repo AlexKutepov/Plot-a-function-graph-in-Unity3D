@@ -30,11 +30,10 @@ public class GraphCreator : MonoBehaviour {
     [SerializeField] float sizeStepY = 50;
 
     [Header("Количество шагов по оси Х / Number of steps along the axis X")]
-    [SerializeField]
-    int Xsteps;
+    [SerializeField] int Xsteps;
+
     [Header("Количество шагов по оси Y/ Number of steps along the axis Y")]
-    [SerializeField]
-    int Ysteps;
+    [SerializeField] int Ysteps;
 
     public List<Vector2> dataPoints = new List<Vector2>();
     RectTransform mainTransform;
@@ -46,14 +45,15 @@ public class GraphCreator : MonoBehaviour {
     [Header("стартовая координата по оси У / Y-axis origin")]
     [SerializeField]
     float StartCoordinateY = 0;
-    protected float step = 0;
-
+ 
     public float valueX { private get; set; }
     public float valueY { private get; set; }
+
     protected Vector2 lastPoint;
+    protected float step = 0;
 
     private void Awake() {
-        mainTransform = GetComponent<RectTransform>();
+        mainTransform = Graph.GetComponent<RectTransform>();
         PointForUTransformTmp = PointForUTransform;
     }
 
@@ -71,12 +71,12 @@ public class GraphCreator : MonoBehaviour {
         if (sizeStepX > 0) {
             step = sizeStepX / Xsteps;
             for (float i = StartCoordinateX; i <= sizeStepX; i += step) {
-                addTestForX(i);
+                addTestForXinTheLoop(i);
             }
         } else {
             step = Math.Abs(sizeStepX / Xsteps);
             for (float i = StartCoordinateX; i >= sizeStepX; i -= step)  {
-                addTestForX(i, true);
+                addTestForXinTheLoop(i);
             }
         }
         axisTextHolder.GetChild(0).gameObject.SetActive(false);
@@ -87,52 +87,31 @@ public class GraphCreator : MonoBehaviour {
         if (sizeStepY > 0) {
             step = sizeStepY / Ysteps;
             for (float i = StartCoordinateY; i <= sizeStepY; i += step) {
-                addTestForY(i);
+                addTestForYinTheLoop(i);
             }
         } else {
             step = Math.Abs(sizeStepY / Ysteps);
             for (float i = StartCoordinateY; i >= sizeStepY; i -= step)  {
-                addTestForY(i, true);
+                addTestForYinTheLoop(i);
             }
         }
         axisTextHolder.GetChild(1).gameObject.SetActive(false);
     }
 
-    protected void addTestForX(float i, bool negative = false) {
+    protected void addTestForXinTheLoop(float i) {
         GameObject newText = Instantiate(axisTextHolder.GetChild(0).gameObject, axisTextHolder);
-        newText.GetComponent<RectTransform>().anchoredPosition = new Vector2((i * mainTransform.sizeDelta.x) / sizeStepX, 0f);
-        if (!negative) newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString();
-        else newText.GetComponent<TextMeshProUGUI>().text = Math.Round(sizeStepX - i, 1).ToString();
+        newText.GetComponent<RectTransform>().anchoredPosition = new Vector2((i * mainTransform.sizeDelta.x) / sizeStepX, 0f) ;
+        newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString();
         newText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(1, mainTransform.sizeDelta.y);
         if (i == 0f) newText.transform.GetChild(0).gameObject.SetActive(false);
     }
 	
-    protected void addTestForY(float i, bool negative = false) {
+    protected void addTestForYinTheLoop(float i) {
         GameObject newText = Instantiate(axisTextHolder.GetChild(1).gameObject, axisTextHolder);
         newText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, (i * mainTransform.sizeDelta.y) / sizeStepY);
-        if (i > 0f)
-            if (!negative) newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString() + "  ";
-            else newText.GetComponent<TextMeshProUGUI>().text = Math.Round(sizeStepY - 1, 1).ToString() + "  ";
+        if (i > 0f)  newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString();
         newText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(mainTransform.sizeDelta.x, 1);
         if (i == 0f) newText.transform.GetChild(0).gameObject.SetActive(false);
-    }
-
-    public void DeleteAllPoints() {
-        if (InstancePoints.Count != 0) {
-            DeleteEveryGameObj(InstancePoints);
-            LineRenderForCreateGraph.Points = new Vector2[0];
-            PointForUTransform = PointForUTransformTmp;
-            lastPoint = Vector2.zero;
-            dataPoints.Clear();
-        }
-    }
-
-    protected void DeleteEveryGameObj(List<GameObject> DeleteGameObj) {
-        if (DeleteGameObj.Count != 0) {
-            for (int i = DeleteGameObj.Count - 1; i >= 0; i--)
-                Destroy(DeleteGameObj[i]);
-            DeleteGameObj.Clear();
-        }
     }
 
     public void AddPoint() {
@@ -160,6 +139,11 @@ public class GraphCreator : MonoBehaviour {
         }
     }
 
+    protected bool ValidateAddingPoint() {
+        if (Math.Abs(valueX) > Math.Abs(sizeStepX) || Math.Abs(valueY) > Math.Abs(sizeStepY)) return false;
+        return true;
+    }
+
     public void DeletePoint() {
         if (LineRenderForCreateGraph.Points.Length == 0) return;
         Vector2[] newPoints = new Vector2[LineRenderForCreateGraph.Points.Length - 1];
@@ -171,9 +155,23 @@ public class GraphCreator : MonoBehaviour {
         dataPoints.RemoveAt(0);
     }
 
-    protected bool ValidateAddingPoint() {
-        if (Math.Abs(valueX) > Math.Abs(sizeStepX) || Math.Abs(valueY) > Math.Abs(sizeStepY)) return false;
-        return true;
+    public void DeleteAllPoints() {
+        if (InstancePoints.Count != 0) {
+            DeleteEveryGameObj(InstancePoints);
+            LineRenderForCreateGraph.Points = new Vector2[0];
+            PointForUTransform = PointForUTransformTmp;
+            lastPoint = Vector2.zero;
+            dataPoints.Clear();
+        }
     }
+
+    protected void DeleteEveryGameObj(List<GameObject> DeleteGameObj) {
+        if (DeleteGameObj.Count != 0) {
+            for (int i = DeleteGameObj.Count - 1; i >= 0; i--)
+                Destroy(DeleteGameObj[i]);
+            DeleteGameObj.Clear();
+        }
+    }
+
 }
 
