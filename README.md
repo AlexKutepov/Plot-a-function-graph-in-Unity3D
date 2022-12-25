@@ -9,7 +9,7 @@
 <p align="center">
   <a href="#about">About</a> •
     <a href="#about">Instruction</a> •
-  <a href="#download">Download package</a> •
+  <a href="#download">Download</a> •
 
 </p>
 
@@ -46,7 +46,7 @@ You can create your own a method for add points, so it will be more convenient.
 
 You can resize the graph however you want, just do a rect transform before how you  start the project.
 
-## Download package
+## Download
 
 - (Latest release) [Download](https://github.com/AlexKutepov/Plot-a-function-graph-in-Unity3D/releases)
 
