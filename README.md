@@ -10,7 +10,7 @@
   <a href="#about">About</a> •
     <a href="#about">Instruction</a> •
   <a href="#download">Download</a> •
-
+<a href="#license">License</a> •
 </p>
 
 
@@ -50,3 +50,8 @@ You can resize the graph however you want, just change the rect transform before
 
 - (Latest release) [Download](https://github.com/AlexKutepov/Plot-a-function-graph-in-Unity3D/releases)
 
+## License
+
+MIT
+
+**Free Software, Hell Yeah!**
