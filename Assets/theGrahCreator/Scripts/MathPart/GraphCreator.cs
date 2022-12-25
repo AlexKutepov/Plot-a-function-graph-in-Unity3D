@@ -18,9 +18,6 @@ public class GraphCreator : MonoBehaviour {
     [Header("Список вставленных точек в график / List of inserted points in the graph")]
     public List<GameObject> InstancePoints;
 
-    [Header("Сам график, где рисовать / The graph where to draw")]
-    [SerializeField] GameObject Graph;
-
     [Header("Объект, хранящий значения на осях / values ​​on axes")]
     [SerializeField]
     Transform axisTextHolder;
@@ -47,13 +44,15 @@ public class GraphCreator : MonoBehaviour {
     float StartCoordinateY = 0;
  
     public float valueX { private get; set; }
-    public float valueY { private get; set; }
+    public float valueY { private get; set; }  
+    private float prewValueX;
+    private float prewValueY;
 
     protected Vector2 lastPoint;
     protected float step = 0;
 
     private void Awake() {
-        mainTransform = Graph.GetComponent<RectTransform>();
+        mainTransform = GetComponent<RectTransform>();
         PointForUTransformTmp = PointForUTransform;
     }
 
@@ -116,6 +115,7 @@ public class GraphCreator : MonoBehaviour {
 
     public void AddPoint() {
         if (ValidateAddingPoint()) { 
+            
             if (lastPoint == new Vector2(valueX, valueY)) return;
             dataPoints.Insert(0, new Vector2(valueX, valueY));
             InstancePoints.Insert(0, Instantiate(PointToInsert, PointForUTransform.position,
@@ -126,10 +126,10 @@ public class GraphCreator : MonoBehaviour {
             InstancePoints[0].GetComponent<RectTransform>().anchoredPosition =
             new Vector3(InstancePoints[0].GetComponent<RectTransform>().anchoredPosition.x
                 + valueX *
-                 Graph.GetComponent<RectTransform>().sizeDelta.x / sizeStepX,
+                 GetComponent<RectTransform>().sizeDelta.x / sizeStepX,
                 InstancePoints[0].GetComponent<RectTransform>().anchoredPosition.y
                 + valueY *
-                Graph.GetComponent<RectTransform>().sizeDelta.y / sizeStepY, 0);
+                 GetComponent<RectTransform>().sizeDelta.y / sizeStepY, 0);
             LineRenderForCreateGraph.Points = new Vector2[InstancePoints.Count];
             for (int i = 0; i < InstancePoints.Count; i++) {
                 LineRenderForCreateGraph.Points[i] =  new Vector2(InstancePoints[i].GetComponent<RectTransform>().anchoredPosition.x,
@@ -140,6 +140,7 @@ public class GraphCreator : MonoBehaviour {
     }
 
     protected bool ValidateAddingPoint() {
+        if (prewValueX==valueX && prewValueY==valueY) return false;
         if (Math.Abs(valueX) > Math.Abs(sizeStepX) || Math.Abs(valueY) > Math.Abs(sizeStepY)) return false;
         return true;
     }
