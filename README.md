@@ -9,7 +9,7 @@
 <p align="center">
   <a href="#about">About</a> •
     <a href="#about">Instruction</a> •
-  <a href="#Download package">Download package</a> •
+  <a href="#download">Download package</a> •
 
 </p>
 
