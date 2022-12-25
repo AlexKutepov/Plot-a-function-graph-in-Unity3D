@@ -1,4 +1,25 @@
-## Plot a function graph in Unity3D
+<h1 align="center">
+  <br>
+  <img src="https://sun9-79.userapi.com/impg/noM0EKqMZl4mGwDDo1DonS4dz6VG2e4GzdyiAA/i6oikJmQw-0.jpg?size=425x355&quality=95&sign=bb6be969bbe9d69c6c22960effd533f9&type=album" alt="Plot a function in Unity3D" width="200"></a>
+  <br>
+    Plot a function in Unity3D
+  <br>
+</h1>
+
+<p align="center">
+  <a href="#about">About</a> •
+    <a href="#about">Instruction</a> •
+  <a href="#Download package">Download package</a> •
+
+</p>
+
+
+## About
+
+The Plot a function in Unity 3D had been made when 
+I was searching for the solution for plotting a graph in Unity 3d and had not found it.
+
+## Instruction
 
 The target language was Russian, but
 ver 0.3 has been translated into English 
@@ -24,3 +45,8 @@ If you want the  function graph is non-linear, you will must add many  points ne
 You can create your own a method for add points, so it will be more convenient.
 
 You can resize the graph however you want, just do a rect transform before how you  start the project.
+
+## Download package
+
+- (Latest release) [Download](https://github.com/AlexKutepov/Plot-a-function-graph-in-Unity3D/releases)
+
