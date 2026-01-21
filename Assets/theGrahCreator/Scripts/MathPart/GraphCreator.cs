@@ -1,178 +1,207 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
-using System;
 using TMPro;
 
-public class GraphCreator : MonoBehaviour {
+/// <summary>
+/// Creates and manages a function graph with dynamic point plotting.
+/// </summary>
+public class GraphCreator : MonoBehaviour
+{
+    [Header("Point Configuration")]
+    [SerializeField] private GameObject pointPrefab;
+    [SerializeField] private Transform pointContainer;
 
-    [Header("Точки для вставки в график / Points to insert into the graph")]
-    [SerializeField] GameObject PointToInsert;
-    [SerializeField] Transform PointForUTransform;
-    protected Transform PointForUTransformTmp;
+    [Header("Line Renderer")]
+    [SerializeField] private UILineRenderer lineRenderer;
 
-    [Header("UILineRenderer для создания графикa / UILineRenderer to create a graph")]
-    [SerializeField] UILineRenderer LineRenderForCreateGraph;
+    [Header("Axis Labels")]
+    [SerializeField] private Transform axisLabelContainer;
 
-    [Header("Список вставленных точек в график / List of inserted points in the graph")]
-    public List<GameObject> InstancePoints;
+    [Header("Graph Dimensions")]
+    [SerializeField] private float axisLengthX = 50f;
+    [SerializeField] private float axisLengthY = 50f;
+    [SerializeField] private int stepsX = 10;
+    [SerializeField] private int stepsY = 10;
 
-    [Header("Объект, хранящий значения на осях / values ​​on axes")]
-    [SerializeField]
-    Transform axisTextHolder;
+    [Header("Origin Offset")]
+    [SerializeField] private float originX = 0f;
+    [SerializeField] private float originY = 0f;
 
-    [Header("Длина осей в графике по сторонам Х и У / The length of the axes in the graph on the sides X and Y")]
-    [SerializeField] float sizeStepX = 50;
-    [SerializeField] float sizeStepY = 50;
+    public List<Vector2> DataPoints { get; private set; } = new List<Vector2>();
+    public List<GameObject> PointInstances { get; private set; } = new List<GameObject>();
 
-    [Header("Количество шагов по оси Х / Number of steps along the axis X")]
-    [SerializeField] int Xsteps;
+    public float InputX { private get; set; }
+    public float InputY { private get; set; }
 
-    [Header("Количество шагов по оси Y/ Number of steps along the axis Y")]
-    [SerializeField] int Ysteps;
+    private RectTransform rectTransform;
+    private Transform pointContainerInitial;
+    private Vector2 lastPlottedPoint;
+    private float previousInputX;
+    private float previousInputY;
 
-    public List<Vector2> dataPoints = new List<Vector2>();
-    RectTransform mainTransform;
-
-    [Header("стартовая координата по оси Х / X-axis origin")]
-    [SerializeField]
-    float StartCoordinateX = 0;
-
-    [Header("стартовая координата по оси У / Y-axis origin")]
-    [SerializeField]
-    float StartCoordinateY = 0;
- 
-    public float valueX { private get; set; }
-    public float valueY { private get; set; }  
-    private float prewValueX;
-    private float prewValueY;
-
-    protected Vector2 lastPoint;
-    protected float step = 0;
-
-    private void Awake() {
-        mainTransform = GetComponent<RectTransform>();
-        PointForUTransformTmp = PointForUTransform;
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        pointContainerInitial = pointContainer;
     }
 
-    void Start() {
-        CreateStartGraph();
+    private void Start()
+    {
+        InitializeGraph();
     }
 
-    public void CreateStartGraph()  {
-        AddTextForX();
-        AddTextForY();
+    public void InitializeGraph()
+    {
+        CreateAxisLabels(Axis.X);
+        CreateAxisLabels(Axis.Y);
     }
 
-    protected void AddTextForX() {
-        if (sizeStepX == 0) return;
-        if (sizeStepX > 0) {
-            step = sizeStepX / Xsteps;
-            for (float i = StartCoordinateX; i <= sizeStepX; i += step) {
-                addTestForXinTheLoop(i);
-            }
-        } else {
-            step = Math.Abs(sizeStepX / Xsteps);
-            for (float i = StartCoordinateX; i >= sizeStepX; i -= step)  {
-                addTestForXinTheLoop(i);
+    private enum Axis { X, Y }
+
+    private void CreateAxisLabels(Axis axis)
+    {
+        float axisLength = axis == Axis.X ? axisLengthX : axisLengthY;
+        int steps = axis == Axis.X ? stepsX : stepsY;
+        float origin = axis == Axis.X ? originX : originY;
+        int templateIndex = axis == Axis.X ? 0 : 1;
+
+        if (Mathf.Approximately(axisLength, 0f)) return;
+
+        float stepSize = Mathf.Abs(axisLength / steps);
+        bool isPositive = axisLength > 0;
+
+        float current = origin;
+        while (isPositive ? current <= axisLength : current >= axisLength)
+        {
+            CreateAxisLabel(axis, current, templateIndex);
+            current += isPositive ? stepSize : -stepSize;
+        }
+
+        axisLabelContainer.GetChild(templateIndex).gameObject.SetActive(false);
+    }
+
+    private void CreateAxisLabel(Axis axis, float value, int templateIndex)
+    {
+        GameObject template = axisLabelContainer.GetChild(templateIndex).gameObject;
+        GameObject label = Instantiate(template, axisLabelContainer);
+
+        RectTransform labelRect = label.GetComponent<RectTransform>();
+        TextMeshProUGUI labelText = label.GetComponent<TextMeshProUGUI>();
+        RectTransform gridLineRect = label.transform.GetChild(0).GetComponent<RectTransform>();
+
+        float axisLength = axis == Axis.X ? axisLengthX : axisLengthY;
+        float graphSize = axis == Axis.X ? rectTransform.sizeDelta.x : rectTransform.sizeDelta.y;
+        float normalizedPosition = (value * graphSize) / axisLength;
+
+        if (axis == Axis.X)
+        {
+            labelRect.anchoredPosition = new Vector2(normalizedPosition, 0f);
+            gridLineRect.sizeDelta = new Vector2(1f, rectTransform.sizeDelta.y);
+        }
+        else
+        {
+            labelRect.anchoredPosition = new Vector2(0f, normalizedPosition);
+            gridLineRect.sizeDelta = new Vector2(rectTransform.sizeDelta.x, 1f);
+
+            if (value <= 0f)
+            {
+                labelText.text = string.Empty;
+                return;
             }
         }
-        axisTextHolder.GetChild(0).gameObject.SetActive(false);
-    }
 
-    protected void AddTextForY() {
-        if (sizeStepY == 0) return;
-        if (sizeStepY > 0) {
-            step = sizeStepY / Ysteps;
-            for (float i = StartCoordinateY; i <= sizeStepY; i += step) {
-                addTestForYinTheLoop(i);
-            }
-        } else {
-            step = Math.Abs(sizeStepY / Ysteps);
-            for (float i = StartCoordinateY; i >= sizeStepY; i -= step)  {
-                addTestForYinTheLoop(i);
-            }
-        }
-        axisTextHolder.GetChild(1).gameObject.SetActive(false);
-    }
+        labelText.text = Math.Round(value, 1).ToString();
 
-    protected void addTestForXinTheLoop(float i) {
-        GameObject newText = Instantiate(axisTextHolder.GetChild(0).gameObject, axisTextHolder);
-        newText.GetComponent<RectTransform>().anchoredPosition = new Vector2((i * mainTransform.sizeDelta.x) / sizeStepX, 0f) ;
-        newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString();
-        newText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(1, mainTransform.sizeDelta.y);
-        if (i == 0f) newText.transform.GetChild(0).gameObject.SetActive(false);
-    }
-	
-    protected void addTestForYinTheLoop(float i) {
-        GameObject newText = Instantiate(axisTextHolder.GetChild(1).gameObject, axisTextHolder);
-        newText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, (i * mainTransform.sizeDelta.y) / sizeStepY);
-        if (i > 0f)  newText.GetComponent<TextMeshProUGUI>().text = Math.Round(i, 1).ToString();
-        newText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(mainTransform.sizeDelta.x, 1);
-        if (i == 0f) newText.transform.GetChild(0).gameObject.SetActive(false);
-    }
-
-    public void AddPoint() {
-        if (ValidateAddingPoint()) { 
-            
-            if (lastPoint == new Vector2(valueX, valueY)) return;
-            dataPoints.Insert(0, new Vector2(valueX, valueY));
-            InstancePoints.Insert(0, Instantiate(PointToInsert, PointForUTransform.position,
-            PointForUTransform.rotation));
-            InstancePoints[0].SetActive(true);
-            InstancePoints[0].transform.SetParent(PointToInsert.transform.parent);
-            InstancePoints[0].transform.localScale = Vector3.one;
-            InstancePoints[0].GetComponent<RectTransform>().anchoredPosition =
-            new Vector3(InstancePoints[0].GetComponent<RectTransform>().anchoredPosition.x
-                + valueX *
-                 GetComponent<RectTransform>().sizeDelta.x / sizeStepX,
-                InstancePoints[0].GetComponent<RectTransform>().anchoredPosition.y
-                + valueY *
-                 GetComponent<RectTransform>().sizeDelta.y / sizeStepY, 0);
-            LineRenderForCreateGraph.Points = new Vector2[InstancePoints.Count];
-            for (int i = 0; i < InstancePoints.Count; i++) {
-                LineRenderForCreateGraph.Points[i] =  new Vector2(InstancePoints[i].GetComponent<RectTransform>().anchoredPosition.x,
-                InstancePoints[i].GetComponent<RectTransform>().anchoredPosition.y);
-            }
-            lastPoint = new Vector2(valueX, valueY);
+        if (Mathf.Approximately(value, 0f))
+        {
+            gridLineRect.gameObject.SetActive(false);
         }
     }
 
-    protected bool ValidateAddingPoint() {
-        if (prewValueX==valueX && prewValueY==valueY) return false;
-        if (Math.Abs(valueX) > Math.Abs(sizeStepX) || Math.Abs(valueY) > Math.Abs(sizeStepY)) return false;
+    public void AddPoint()
+    {
+        if (!ValidatePoint()) return;
+        if (lastPlottedPoint == new Vector2(InputX, InputY)) return;
+
+        Vector2 newPoint = new Vector2(InputX, InputY);
+        DataPoints.Insert(0, newPoint);
+
+        GameObject pointInstance = Instantiate(pointPrefab, pointContainer.position, pointContainer.rotation);
+        pointInstance.SetActive(true);
+        pointInstance.transform.SetParent(pointPrefab.transform.parent);
+        pointInstance.transform.localScale = Vector3.one;
+
+        RectTransform pointRect = pointInstance.GetComponent<RectTransform>();
+        Vector2 graphPosition = CalculateGraphPosition(InputX, InputY);
+        pointRect.anchoredPosition = pointRect.anchoredPosition + graphPosition;
+
+        PointInstances.Insert(0, pointInstance);
+        UpdateLineRenderer();
+
+        lastPlottedPoint = newPoint;
+    }
+
+    private Vector2 CalculateGraphPosition(float x, float y)
+    {
+        float posX = x * rectTransform.sizeDelta.x / axisLengthX;
+        float posY = y * rectTransform.sizeDelta.y / axisLengthY;
+        return new Vector2(posX, posY);
+    }
+
+    private void UpdateLineRenderer()
+    {
+        Vector2[] points = new Vector2[PointInstances.Count];
+        for (int i = 0; i < PointInstances.Count; i++)
+        {
+            RectTransform rect = PointInstances[i].GetComponent<RectTransform>();
+            points[i] = rect.anchoredPosition;
+        }
+        lineRenderer.Points = points;
+    }
+
+    private bool ValidatePoint()
+    {
+        if (Mathf.Approximately(previousInputX, InputX) && 
+            Mathf.Approximately(previousInputY, InputY))
+            return false;
+
+        if (Mathf.Abs(InputX) > Mathf.Abs(axisLengthX) || 
+            Mathf.Abs(InputY) > Mathf.Abs(axisLengthY))
+            return false;
+
         return true;
     }
 
-    public void DeletePoint() {
-        if (LineRenderForCreateGraph.Points.Length == 0) return;
-        Vector2[] newPoints = new Vector2[LineRenderForCreateGraph.Points.Length - 1];
-        for (int i = 0; i < newPoints.Length; i++) newPoints[i] = LineRenderForCreateGraph.Points[i + 1];
-        LineRenderForCreateGraph.Points = newPoints;
-        Destroy(InstancePoints[0]);
-        InstancePoints.RemoveAt(0);
-        lastPoint = Vector2.zero;
-        dataPoints.RemoveAt(0);
+    public void DeletePoint()
+    {
+        if (lineRenderer.Points.Length == 0) return;
+
+        Vector2[] newPoints = new Vector2[lineRenderer.Points.Length - 1];
+        Array.Copy(lineRenderer.Points, 1, newPoints, 0, newPoints.Length);
+        lineRenderer.Points = newPoints;
+
+        Destroy(PointInstances[0]);
+        PointInstances.RemoveAt(0);
+        DataPoints.RemoveAt(0);
+
+        lastPlottedPoint = Vector2.zero;
     }
 
-    public void DeleteAllPoints() {
-        if (InstancePoints.Count != 0) {
-            DeleteEveryGameObj(InstancePoints);
-            LineRenderForCreateGraph.Points = new Vector2[0];
-            PointForUTransform = PointForUTransformTmp;
-            lastPoint = Vector2.zero;
-            dataPoints.Clear();
+    public void DeleteAllPoints()
+    {
+        if (PointInstances.Count == 0) return;
+
+        foreach (var point in PointInstances)
+        {
+            Destroy(point);
         }
-    }
 
-    protected void DeleteEveryGameObj(List<GameObject> DeleteGameObj) {
-        if (DeleteGameObj.Count != 0) {
-            for (int i = DeleteGameObj.Count - 1; i >= 0; i--)
-                Destroy(DeleteGameObj[i]);
-            DeleteGameObj.Clear();
-        }
+        PointInstances.Clear();
+        DataPoints.Clear();
+        lineRenderer.Points = Array.Empty<Vector2>();
+        pointContainer = pointContainerInitial;
+        lastPlottedPoint = Vector2.zero;
     }
-
 }
-

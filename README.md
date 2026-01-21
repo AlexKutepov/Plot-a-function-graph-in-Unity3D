@@ -1,172 +1,139 @@
-<h1 align="center">
-  <br>
-  <img src="https://sun9-79.userapi.com/impg/noM0EKqMZl4mGwDDo1DonS4dz6VG2e4GzdyiAA/i6oikJmQw-0.jpg?size=425x355&quality=95&sign=bb6be969bbe9d69c6c22960effd533f9&type=album" alt="Plot a function in Unity3D" width="200"></a>
-  <br>
-    Plot a function in Unity3D
-  <br>
-</h1>
+# Unity3D Function Graph Plotter
 
-<p align="center">
-  <a href="#about">About</a> •
-    <a href="#about">Instruction</a> •
-  <a href="#download">Download</a> •
-<a href="#license">License</a> •
-</p>
+A lightweight solution for plotting function graphs in Unity3D using UI components.
 
+![Graph Example](https://sun9-79.userapi.com/impg/noM0EKqMZl4mGwDDo1DonS4dz6VG2e4GzdyiAA/i6oikJmQw-0.jpg?size=425x355&quality=95&sign=bb6be969bbe9d69c6c22960effd533f9&type=album)
 
-## About
+## Features
 
-The Plot a function in Unity 3D had been made when 
-I was searching for the solution for plotting a graph in Unity 3d and had not found it.
+- Dynamic point plotting on a 2D graph
+- Configurable axis dimensions and step counts
+- Support for negative axis values
+- TextMeshPro integration for axis labels
+- Grid lines for visual reference
+- Easy integration via prefab
 
-## Instruction
+## Requirements
 
-The target language was Russian, but
-ver 0.3 has been translated into English 
+- Unity 2020.3 LTS or newer
+- TextMeshPro package
+- UnityEngine.UI.Extensions (included)
 
-and has been added TextMeshPro.
+## Installation
 
-The system is using lablary - UnityEngine.UI.Extensions, so you shoud use a version of Unity3D that can using the lablary.
+1. Download the latest release
+2. Import the package into your Unity project
+3. Drag `GraphController.prefab` from `Assets/theGrahCreator/` into your scene
 
-The basic cofiguration for the grahp:
+## Configuration
 
-![](https://sun9-55.userapi.com/impg/td9vN1VD4jDjY-8EbzaCYB5t0tZfFVv3XDRGAA/lYhw79iresg.jpg?size=574x524&quality=95&sign=aaba69a57d447ca1ac1c9461292cf249&type=album)
+| Parameter | Description |
+|-----------|-------------|
+| Axis Length X/Y | Total length of each axis in units |
+| Steps X/Y | Number of divisions on each axis |
+| Origin X/Y | Starting coordinate offset |
+| Point Prefab | Visual representation of plotted points |
+| Line Renderer | UILineRenderer for connecting points |
 
-looks like this:
+## Usage
 
-![](https://sun9-21.userapi.com/impg/MC3H-ck0iU0yMFvP7UYqU_Us5iPPct5JieM3PA/yz2sFiXfcfQ.jpg?size=542x607&quality=95&sign=2cecabd7b360bb57aab2290cd3b2972a&type=album)
+### Basic Point Plotting
 
-The graph can be negative if you will set for the "Size Step x or y" to a negative value,
-it looks like:
-![](https://sun9-21.userapi.com/impg/Gq3ukiATLHq9FUlQKiFi_AjsxDobAoGQzNVPHg/IjG_m2Qci7o.jpg?size=486x583&quality=95&sign=919f4883d163c5a5e011e5dee4104461&type=album)
+```csharp
+public GraphCreator graph;
 
-If you will want the function graph is non-linear, you will shoud add many points next to each other.
+void PlotFunction()
+{
+    for (float x = 0; x <= 10; x += 0.5f)
+    {
+        graph.InputX = x;
+        graph.InputY = Mathf.Sin(x) * 5;
+        graph.AddPoint();
+    }
+}
+```
 
-You can create your own a method for add points, so it will be more convenient.
+### Input Controller
 
-You can resize the graph however you want, just change the rect transform before how you will start the project.
+The `GraphCreatorInputController` component provides UI bindings:
+- `AddPoint()` — plots a point from input fields
+- `ClearGraph()` — removes all points
+- `DeleteLastPoint()` — removes the most recent point
 
-## Download
+## Project Structure
 
-- (Latest release) [Download](https://github.com/AlexKutepov/Plot-a-function-graph-in-Unity3D/releases)
+```
+Assets/theGrahCreator/
+├── Scripts/
+│   ├── MathPart/
+│   │   └── GraphCreator.cs         # Core graph logic
+│   ├── GraphCreatorInputController.cs
+│   └── CustomParser.cs             # Number parsing utility
+├── Scenes/
+│   └── SampleScene.unity
+├── unity-ui-extensions/            # UI Extensions library
+└── GraphController.prefab
+```
+
+## Screenshots
+
+**Standard Configuration:**
+
+![Standard Graph](https://sun9-21.userapi.com/impg/MC3H-ck0iU0yMFvP7UYqU_Us5iPPct5JieM3PA/yz2sFiXfcfQ.jpg?size=542x607&quality=95&sign=2cecabd7b360bb57aab2290cd3b2972a&type=album)
+
+**Negative Axis Values:**
+
+![Negative Graph](https://sun9-21.userapi.com/impg/Gq3ukiATLHq9FUlQKiFi_AjsxDobAoGQzNVPHg/IjG_m2Qci7o.jpg?size=486x583&quality=95&sign=919f4883d163c5a5e011e5dee4104461&type=album)
+
+## API Reference
+
+### GraphCreator
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `DataPoints` | `List<Vector2>` | All plotted coordinates |
+| `PointInstances` | `List<GameObject>` | Instantiated point objects |
+| `InputX` | `float` | X coordinate for next point |
+| `InputY` | `float` | Y coordinate for next point |
+
+| Method | Description |
+|--------|-------------|
+| `AddPoint()` | Plots current InputX/InputY |
+| `DeletePoint()` | Removes last plotted point |
+| `DeleteAllPoints()` | Clears the entire graph |
+| `InitializeGraph()` | Rebuilds axis labels |
+
+### CustomParser
+
+| Method | Description |
+|--------|-------------|
+| `ParseToDouble(string)` | Culture-aware string to double conversion |
 
 ## License
 
-MIT
+MIT License — see [LICENSE.md](LICENSE.md)
 
-**Free Software, Hell Yeah!**
+---
 
-# Построение функции в Unity3D
-<h1 align="center">
-  <br>
-  <img src="https://sun9-79.userapi.com/impg/noM0EKqMZl4mGwDDo1DonS4dz6VG2e4GzdyiAA/i6oikJmQw-0.jpg?size=425x355&quality=95&sign=bb6be969bbe9d69c6c22960effd533f9&type=album" alt="Построение функции в Unity3D" width="200"></a>
-  <br>
-    Построение функции в Unity3D
-  <br>
-</h1>
+# Построение графиков функций в Unity3D
 
-<p align="center">
-  <a href="#Описание">Описание</a> •
-    <a href="#Инструкция">Инструкция</a> •
-  <a href="#Скачать">Скачать</a> •
-<a href="#Лицензия">Лицензия</a> •
-</p>
+Легковесное решение для построения графиков функций в Unity3D с использованием UI компонентов.
 
+## Возможности
 
-## Описание
+- Динамическое построение точек на 2D графике
+- Настраиваемые размеры осей и количество делений
+- Поддержка отрицательных значений осей
+- Интеграция с TextMeshPro
+- Линии сетки
+- Простая интеграция через prefab
 
-Построение функции в Unity3D было сделано, когда я искал решение для построения графика в Unity 3D и не нашел его.
+## Установка
 
-## Инструкция
-
-Целевой язык - русский, но
-версия 0.3 была переведена на английский
-
-и был добавлен TextMeshPro.
-
-Система использует библиотеку - UnityEngine.UI.Extensions, поэтому вам следует использовать версию Unity3D, которая может использовать эту библиотеку.
-
-Базовая конфигурация для графика:
-
-![](https://sun9-55.userapi.com/impg/td9vN1VD4jDjY-8EbzaCYB5t0tZfFVv3XDRGAA/lYhw79iresg.jpg?size=574x524&quality=95&sign=aaba69a57d447ca1ac1c9461292cf249&type=album)
-
-выглядит следующим образом:
-
-![](https://sun9-21.userapi.com/impg/MC3H-ck0iU0yMFvP7UYqU_Us5iPPct5JieM3PA/yz2sFiXfcfQ.jpg?size=542x607&quality=95&sign=2cecabd7b360bb57aab2290cd3b2972a&type=album)
-
-График может быть отрицательным, если вы установите для "Размер шага x или y" отрицательное значение,
-это выглядит так:
-![](https://sun9-21.userapi.com/impg/Gq3ukiATLHq9FUlQKiFi_AjsxDobAoGQzNVPHg/IjG_m2Qci7o.jpg?size=486x583&quality=95&sign=919f4883d163c5a5e011e5dee4104461&type=album)
-
-Если вы хотите, чтобы график функции был нелинейным, вам следует добавить много точек рядом друг с другом.
-
-Вы можете создать свой собственный метод для добавления точек, так что это будет более удобно.
-
-Вы можете изменить размер графика по вашему усмотрению, просто измените прямоугольное преобразование до того, как вы начнете проект.
-
-## Скачать
-
-- (Последний релиз) [Скачать](https://github.com/AlexKutepov/Plot-a-function-graph-in-Unity3D/releases)
+1. Скачайте последний релиз
+2. Импортируйте пакет в проект Unity
+3. Перетащите `GraphController.prefab` из `Assets/theGrahCreator/` в сцену
 
 ## Лицензия
 
-MIT
-
-**Бесплатное программное обеспечение, Да!**
-
-# Unity3D 中的函数绘图
-<h1 align="center">
-  <br>
-  <img src="https://sun9-79.userapi.com/impg/noM0EKqMZl4mGwDDo1DonS4dz6VG2e4GzdyiAA/i6oikJmQw-0.jpg?size=425x355&quality=95&sign=bb6be969bbe9d69c6c22960effd533f9&type=album" alt="在 Unity3D 中绘制函数" width="200"></a>
-  <br>
-    Unity3D 中的函数绘图
-  <br>
-</h1>
-
-<p align="center">
-  <a href="#关于">关于</a> •
-    <a href="#指导">指导</a> •
-  <a href="#下载">下载</a> •
-<a href="#许可证">许可证</a> •
-</p>
-
-
-## 关于
-
-当我在寻找在 Unity 3D 中绘制图表的解决方案时，Unity3D 中的函数绘图就诞生了。
-
-## 指导
-
-目标语言是俄语，但
-版本 0.3 已翻译为英语
-
-并添加了 TextMeshPro。
-
-该系统使用 UnityEngine.UI.Extensions 库，因此您应该使用可以使用该库的 Unity3D
-图表的基本配置:
-
-![](https://sun9-55.userapi.com/impg/td9vN1VD4jDjY-8EbzaCYB5t0tZfFVv3XDRGAA/lYhw79iresg.jpg?size=574x524&quality=95&sign=aaba69a57d447ca1ac1c9461292cf249&type=album)
-
-看起来是这样的:
-
-![](https://sun9-21.userapi.com/impg/MC3H-ck0iU0yMFvP7UYqU_Us5iPPct5JieM3PA/yz2sFiXfcfQ.jpg?size=542x607&quality=95&sign=2cecabd7b360bb57aab2290cd3b2972a&type=album)
-
-如果您将 "Size Step x 或 y" 设置为负值，则图表可能为负，
-它看起来像这样:
-![](https://sun9-21.userapi.com/impg/Gq3ukiATLHq9FUlQKiFi_AjsxDobAoGQzNVPHg/IjG_m2Qci7o.jpg?size=486x583&quality=95&sign=919f4883d163c5a5e011e5dee4104461&type=album)
-
-如果您希望函数图形是非线性的，您应该在彼此旁边添加许多点。
-
-您可以创建自己的方法来添加点，这样会更方便。
-
-您可以根据需要调整图形的大小，只需在启动项目之前更改矩形变换。
-
-## 下载
-
-- (最新版本) [下载](https://github.com/AlexKutepov/Plot-a-function-graph-in-Unity3D/releases)
-
-## 许可证
-
-MIT
-
-**自由软件，耶！**
+MIT License — см. [LICENSE.md](LICENSE.md)
